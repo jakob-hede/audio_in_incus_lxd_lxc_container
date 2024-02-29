@@ -1,0 +1,26 @@
+# Profile audio_02_pipewire_socket:
+config:
+  environment.PIPEWIRE_REMOTE: /tmp/pipewire-0-manager
+description: Audio socket for Pipewire
+devices:
+  PipewireSocket1:
+    bind: container
+    connect: unix:/run/user/1000/pipewire-0
+    gid: "1000"
+    listen: unix:/tmp/pipewire-0
+    mode: "0777"
+    security.gid: "1000"
+    security.uid: "1000"
+    type: proxy
+    uid: "1000"
+  PipewireSocket2:
+    bind: container
+    connect: unix:/run/user/1000/pipewire-0-manager
+    gid: "1000"
+    listen: unix:/tmp/pipewire-0-manager
+    mode: "0777"
+    security.gid: "1000"
+    security.uid: "1000"
+    type: proxy
+    uid: "1000"
+name: audio_02_pipewire_socket

@@ -1,0 +1,16 @@
+# Profile audio_01_pulsewire_socket:
+config:
+  environment.PULSE_SERVER: unix:/home/kilo/.pulsewire-native-socket
+description: Audio socket for PulseAudio
+devices:
+  PulseSocket1:
+    bind: container
+    connect: unix:/run/user/1000/pulse/native
+    gid: "1000"
+    listen: unix:/home/kilo/.pulsewire-native-socket
+    mode: "0777"
+    security.gid: "1000"
+    security.uid: "1000"
+    type: proxy
+    uid: "1000"
+name: audio_01_pulsewire_socket
