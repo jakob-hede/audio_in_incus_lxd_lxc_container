@@ -113,3 +113,5 @@ I left systemd handling of pipewire and pulseaudio as was.
 Yes. The two exports differ as to the prefix `unix:`
 
 I struggled quite to get this working. Now it seems so simple ...
+
+Thanks to the Incus/LXD/LXC community for [helping out with this](https://discuss.linuxcontainers.org/t/audio-via-pulseaudio-inside-container/8768).
