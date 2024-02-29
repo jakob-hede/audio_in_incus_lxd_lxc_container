@@ -58,7 +58,7 @@ With this I could `paplay test.wav` inside container and hear the sound on the h
 
 ## Pipewire:
 The pipewire socket is at `/run/user/1000/pipewire-0` (or `...pipewire-0-manager`) on the host.  
-The container is given access to it in a profile like so:
+The container is given access to it (them?) in a profile like so:
 ```yaml
 # Profile audio_02_pipewire_socket:
 config:
@@ -88,7 +88,7 @@ devices:
 name: audio_02_pipewire_socket
 ```
 I found that I needed to bind BOTH the pipewire-0 and pipewire-0-manager sockets
-to the container, in order to get it working, and then only pipewire-0-manager appears in /tmp/ in container. _ODD_.  
+to the container, in order to get any of them to appear, and then only pipewire-0-manager appears in /tmp/ in container. _ODD_.  
 (_It is arbitrary that I've chosen /tmp/ as the location in the container for this, instead of /home/kilo/._)
 
 Again to export; add `PIPEWIRE_REMOTE`:
@@ -100,3 +100,16 @@ export PULSE_SERVER=unix:/home/kilo/.pulsewire-native-socket
 export PIPEWIRE_REMOTE=/tmp/pipewire-0-manager
 ```
 With this I could `pw-play test.wav` inside container and hear the sound on the host
+
+
+## Remarks:
+- Relevant packages in container:
+  - dnf install pipewire  # Includes pipewire-pulseaudio - at least on Fedora 39
+  - dnf install pulseaudio-utils
+  - dnf install pipewire-utils
+
+I left systemd handling of pipewire and pulseaudio as was.
+
+Yes. The two exports differ as to the prefix `unix:`
+
+I struggled quite to get this working. Now it seems so simple ...
