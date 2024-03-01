@@ -88,8 +88,10 @@ devices:
 name: audio_02_pipewire_socket
 ```
 I found that I needed to bind BOTH the pipewire-0 and pipewire-0-manager sockets
-to the container, in order to get any of them to appear, and then only pipewire-0-manager appears in /tmp/ in container. _ODD_.  
-(_It is arbitrary that I've chosen /tmp/ as the location in the container for this, instead of /home/kilo/._)
+to the container, in order to get any of them to appear,
+and then only pipewire-0-manager appears in /tmp/ in container. _Weird_.  
+(_It is arbitrary that I've chosen /tmp/ as the location in the container for this,
+instead of /home/kilo/._)
 
 Again to export; add `PIPEWIRE_REMOTE`:
 
@@ -136,9 +138,9 @@ Yes. The two exports differ as to the prefix `unix:`
 I have not tried Wayland, but there is this guide:
 [LXD Containers for Wayland GUI Apps](https://blog.swwomm.com/2022/08/lxd-containers-for-wayland-gui-apps.html)
 
-The pipewire socket doe not work alone. It needs the pulseaudio socket as well.
-The only difference I have observed is that it allows the pipewire-utility pw-play to work.
-This I take to indicate that _a pipewire API_ is working, and that this might enable other apps to use this API.
+The pipewire socket does not work alone. It needs the pulseaudio socket as well.
+The only difference I have observed is that it allows the pipewire-utility `pw-play` to work.
+This I take to indicate that _a pipewire API-ish_ is working, and that this might enable other apps to use this API.
 
 I struggled quite to get this working. Now it seems so simple ...
 
