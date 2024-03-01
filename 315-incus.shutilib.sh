@@ -269,6 +269,12 @@ _incus_debsid() {
   #  #  _incus_exec_login_user_bash debsid root
 }
 
+_shutilib_funcname() {
+  local msg
+  msg="FUNCNAME:: ${FUNCNAME[1]}"
+  _deepbug_color "$BLUE""${msg}"
+}
+
 #_incus_exec_user_bash() {
 #  _shutilib_funcname
 #  declare container_name=$1
