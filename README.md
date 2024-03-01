@@ -122,14 +122,6 @@ devices:
     type: gpu
 name: x11
 ```
-I have not tried Wayland, but there is this guide:
-[LXD Containers for Wayland GUI Apps](https://blog.swwomm.com/2022/08/lxd-containers-for-wayland-gui-apps.html)
-
-It might be important how you enter the container.
-I use something like this approach in a script:
-```bash
-_incus_do exec "${container_name}" -- sudo --user "${user_name}" --login "${_command}"
-```
 
 ## Remarks:
 - Relevant packages in container:
@@ -140,6 +132,13 @@ _incus_do exec "${container_name}" -- sudo --user "${user_name}" --login "${_com
 I left systemd handling of pipewire and pulseaudio as was.
 
 Yes. The two exports differ as to the prefix `unix:`
+
+I have not tried Wayland, but there is this guide:
+[LXD Containers for Wayland GUI Apps](https://blog.swwomm.com/2022/08/lxd-containers-for-wayland-gui-apps.html)
+
+The pipewire socket doe not work alone. It needs the pulseaudio socket as well.
+The only difference I have observed is that it allows the pipewire-utility pw-play to work.
+This I take to indicate that _a pipewire API_ is working, and that this might enable other apps to use this API.
 
 I struggled quite to get this working. Now it seems so simple ...
 
