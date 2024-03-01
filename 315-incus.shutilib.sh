@@ -2,7 +2,7 @@
 
 # This old huge script is just included for inspiration and reference.
 #  It is part of a larger project; 'shutilib',
-#  so there are some calls external functions,
+#  so there are some calls to external functions,
 #  that are not included here.
 
 _INCUS_BIN='/usr/bin/incus'
