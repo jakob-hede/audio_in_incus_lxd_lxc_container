@@ -1,0 +1,16 @@
+# Profile x11:
+config:
+  environment.DISPLAY: :0
+  environment.PULSE_SERVER: unix:/home/sermin/pulse-native
+description: GUI X11 profile
+devices:
+  X0:
+    bind: container
+    connect: unix:@/tmp/.X11-unix/X0
+    listen: unix:@/tmp/.X11-unix/X0
+    security.gid: "1000"
+    security.uid: "1000"
+    type: proxy
+  mygpu:
+    type: gpu
+name: x11

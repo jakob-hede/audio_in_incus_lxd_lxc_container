@@ -101,6 +101,35 @@ export PIPEWIRE_REMOTE=/tmp/pipewire-0-manager
 ```
 With this I could `pw-play test.wav` inside container and hear the sound on the host
 
+## GUI apps:
+This works for me with _GUI apps_."
+I use X11 with this profile:
+```yaml
+# Profile x11:
+config:
+  environment.DISPLAY: :0
+  environment.PULSE_SERVER: unix:/home/sermin/pulse-native
+description: GUI X11 profile
+devices:
+  X0:
+    bind: container
+    connect: unix:@/tmp/.X11-unix/X0
+    listen: unix:@/tmp/.X11-unix/X0
+    security.gid: "1000"
+    security.uid: "1000"
+    type: proxy
+  mygpu:
+    type: gpu
+name: x11
+```
+I have not tried Wayland, but there is this guide:
+[LXD Containers for Wayland GUI Apps](https://blog.swwomm.com/2022/08/lxd-containers-for-wayland-gui-apps.html)
+
+It might be important how you enter the container.
+I use something like this approach in a script:
+```bash
+_incus_do exec "${container_name}" -- sudo --user "${user_name}" --login "${_command}"
+```
 
 ## Remarks:
 - Relevant packages in container:
