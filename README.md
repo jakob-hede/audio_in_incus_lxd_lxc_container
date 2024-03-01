@@ -126,10 +126,10 @@ name: x11
 ```
 
 ## Remarks:
-- Relevant packages in container:
-  - dnf install pipewire  # Includes pipewire-pulseaudio - at least on Fedora 39
-  - dnf install pulseaudio-utils
-  - dnf install pipewire-utils
+> - Relevant packages in container:
+>  - dnf install pipewire  # Includes pipewire-pulseaudio - at least on Fedora 39
+>  - dnf install pulseaudio-utils
+>  - dnf install pipewire-utils
 
 I left systemd handling of pipewire and pulseaudio as was.
 
@@ -138,10 +138,12 @@ Yes. The two exports differ as to the prefix `unix:`
 I have not tried Wayland, but there is this guide:
 [LXD Containers for Wayland GUI Apps](https://blog.swwomm.com/2022/08/lxd-containers-for-wayland-gui-apps.html)
 
-The pipewire socket does not work alone. It needs the pulseaudio socket as well.
-The only difference I have observed is that it allows the pipewire-utility `pw-play` to work.
-This I take to indicate that _a pipewire API-ish_ is working, and that this might enable other apps to use this API.
+> The pipewire socket does not work alone. It needs the pulseaudio socket as well.  
+The only difference I have observed is that it allows the pipewire-utility `pw-play` to work.  
+This I take to indicate that _a pipewire API-ish_ is working, and that this might enable other apps to use this API.  
+That pipewire in container is dependent on pulseaudio might be due to how my host is set up.  
+I do not understand the details of this.
 
-I struggled quite to get this working. Now it seems so simple ...
+I struggled quite to get this working. Now (some of) it seems so simple ...
 
 Thanks to the Incus/LXD/LXC community for [helping out with this](https://discuss.linuxcontainers.org/t/audio-via-pulseaudio-inside-container/8768).
